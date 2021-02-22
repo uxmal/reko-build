@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ToolProjects Include="$(ProjectDir)..\Generate\Generate.csproj" />
+    <ToolProjects Include="$(ProjectDir)..\Xslt\Xslt.csproj" />
+  </ItemGroup>
+  <Target Name="BuildTools" AfterTargets="Build">
+    <MSBuild Projects="@(ToolProjects)" />
+  </Target>
+</Project>
