@@ -1,20 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <SolutionDir>$(ProjectDir)..\..</SolutionDir>
+    <GenerateFileTemplate>templateW.txt</GenerateFileTemplate>
+    <GenerateFileOutput>MenuSystem.cs</GenerateFileOutput>
   </PropertyGroup>
   
   <ItemGroup>
     <Compile Include="MenuSystem.cs" Condition="!Exists('MenuSystem.cs')" />
   </ItemGroup>
 
-  <Target Name="GenerateFile" BeforeTargets="Compile" Inputs="$(ProjectDir)templateW.txt" Outputs="$(ProjectDir)MenuSystem.cs">
-    <Exec Command='$(SolutionDir)Tools\Generate\bin\$(Configuration)\netcoreapp3.1\Generate.exe templateW.txt MenuSystem.cs' />
-  </Target>
-    
   <ItemGroup>
     <ProjectReference Include="..\..\Tools\ToolBuilder\ToolBuilder.csproj" />
   </ItemGroup>
+  <Import Project="$(ProjectDir)..\..\Tools\ToolBuilder\GenerateFile.targets" />
 
 </Project>

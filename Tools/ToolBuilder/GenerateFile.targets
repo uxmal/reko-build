@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Target Name="GenerateFile" BeforeTargets="Compile"
+    Inputs="$(GenerateFileTemplate);$(SolutionDir)Tools\Generate\bin\$(Configuration)\netcoreapp3.1\Generate.exe"
+    Outputs="$(GenerateFileOutput)">
+    <Message Importance="high" Text="***** Generatin' ****" />
+    <Exec Command="$(SolutionDir)Tools\Generate\bin\$(Configuration)\netcoreapp3.1\Generate.exe $(GenerateFileTemplate) $(GenerateFileOutput)" />
+  </Target>
+</Project>
